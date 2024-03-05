@@ -1,5 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
-require("./taks/index.js");
+require("./task/index.js");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
