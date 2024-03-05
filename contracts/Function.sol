@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.24;
 
-contract Function {
+contract FunctionReturns {
     //Functions can return multiple values.
     function returnMany() public pure returns (uint, bool, uint) {
         return (1, false, 1);
