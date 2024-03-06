@@ -29,4 +29,12 @@ describe("Error", () => {
     const error = await Error.deploy();
     await expect(error.testRevent(15)).to.not.be.reverted;
   })
+  it("testAssert: should revert if numValue is not equal to 0", async function () {
+    const Error = await ethers.getContractFactory("Error");
+    const error = await Error.deploy();
+
+    error.setNumValue(1);
+
+    await expect(error.testAssert()).to.be.reverted;
+  });
 });

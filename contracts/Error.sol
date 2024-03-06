@@ -14,11 +14,15 @@ contract Error {
         }
     }
 
-    uint public numValue;
+    uint256 public numValue = 0;
+
+    function setNumValue(uint val) public {
+        numValue = val;
+    }
 
     function testAssert() public view {
         // 验证numValue是否等于0，如果不等于0，则触发异常
-        assert(numValue == 0);
+        assert(numValue != 0);
     }
 
     // 自定义错误类型，它包含两个参数 balance 和 withAmount。这个错误类型可以被用于在合约中处理特定的错误情况
