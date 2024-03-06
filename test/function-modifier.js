@@ -23,4 +23,17 @@ describe("function modifier", () => {
       functionModifier.connect(nonOwner).changeOwner(newOwner)
     ).to.be.revertedWith("Not owner");
   });
+
+//   it("decrement: should decrement x by the specified amount", async () => {
+//     const FunctionModifier = await ethers.getContractFactory(
+//       "FunctionModifier"
+//     );
+//     const functionModifier = await FunctionModifier.deploy();
+//     const initialX = await functionModifier.x(); // x = 10
+
+//     await functionModifier.decrement(5);
+//     const newX = await functionModifier.x();
+//     console.log('newX =>', newX);
+//     expect(newX).to.equal(initialX - 5);
+//   });
 });
