@@ -8,7 +8,7 @@ contract Error {
     }
 
     function testRevent(uint value) public pure {
-        // revert 验证是否小于等于10，通过则除非异常
+        // revert 验证是否小于等于10，通过则触发异常
         if (value <= 10) {
             revert("Input must be greater than 10");
         }

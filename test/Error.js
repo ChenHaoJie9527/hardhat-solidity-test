@@ -18,4 +18,10 @@ describe("Error", () => {
     expect(error).not.to.be.null;
     await expect(error.testRequire(11)).to.not.be.reverted;
   });
+  it('testRevent: should revert if value is not greater than 10', async () => {
+    const Error = await ethers.getContractFactory("Error");
+    const error = await Error.deploy();
+
+    await expect(error.testRequire(5)).to.be.revertedWith('Input must be greater than 10');
+  })
 });
