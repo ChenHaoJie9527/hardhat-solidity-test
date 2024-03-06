@@ -37,4 +37,11 @@ describe("Error", () => {
 
     await expect(error.testAssert()).to.be.reverted;
   });
+  it("testCustomErrorMessage: should revert with custom error message if balance is insufficient", async function () {
+    const Error = await ethers.getContractFactory("Error");
+    const error = await Error.deploy();
+
+    // Simulate insufficient balance by passing a large amount
+    await expect(error.testCustomErrorMessage(1000000)).to.be.revertedWith("InsufficientBalance");
+  });
 });
