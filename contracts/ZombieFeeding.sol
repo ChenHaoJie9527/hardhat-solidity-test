@@ -3,6 +3,29 @@ pragma solidity ^0.8.20;
 
 import "./ZombieFactory2.sol";
 
+// abstract 标记为抽象类
+abstract contract KittyInterface {
+    // virtual 虚拟函数 不需要具体实现
+    function getKitty(
+        uint256 _id
+    )
+        external
+        view
+        virtual
+        returns (
+            bool isGestating,
+            bool isReady,
+            uint256 cooldownIndex,
+            uint256 nextActionAt,
+            uint256 siringWithId,
+            uint256 birthTime,
+            uint256 matronId,
+            uint256 sireId,
+            uint256 generation,
+            uint256 genes
+        );
+}
+
 contract ZombieFeeding is ZombieFactory2 {
     function feedAndMultiply(uint _zombieId, uint _targetDna) public {
         // 判断调用函数者是否是自己
