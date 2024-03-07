@@ -33,7 +33,14 @@ contract ZombieFactory2 {
         return rand % dnaModulus;
     }
 
-    function createRandomZombie(string calldata _str) public {
+    modifier sayHiToVitalik(string calldata _str) {
+        require(ownerZombieCount[msg.sender] == 0);
+        _;
+    }
+
+    function createRandomZombie(
+        string calldata _str
+    ) public sayHiToVitalik(_str) {
         uint256 ranDna = _generateRandomDna(_str);
         _createZombie(_str, ranDna);
     }
