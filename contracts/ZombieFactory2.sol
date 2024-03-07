@@ -6,8 +6,6 @@ contract ZombieFactory2 {
     mapping(uint => address) public zombieToOwner;
     mapping(address => uint) ownerZombieCount;
 
-    event newZombie(uint256 zombieId, string name, uint256 dna);
-
     uint256 dnaDigits = 16;
     uint256 dnaModulus = 10 ** dnaDigits;
 
