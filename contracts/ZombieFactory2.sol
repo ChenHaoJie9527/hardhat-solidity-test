@@ -45,3 +45,7 @@ contract ZombieFactory2 {
         _createZombie(_str, ranDna);
     }
 }
+
+contract ZombieFeeding is ZombieFactory2 {
+
+}
