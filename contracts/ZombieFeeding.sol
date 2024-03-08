@@ -27,6 +27,8 @@ abstract contract KittyInterface {
 }
 
 contract ZombieFeeding is ZombieFactory2 {
+    address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d;
+    KittyInterface kittyContract = KittyInterface(ckAddress);
     function feedAndMultiply(uint _zombieId, uint _targetDna) public {
         // 判断调用函数者是否是自己
         require(zombieToOwner[_zombieId] == msg.sender);
