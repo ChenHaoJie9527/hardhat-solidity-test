@@ -30,13 +30,20 @@ contract ZombieFeeding is ZombieFactory2 {
     address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d;
     KittyInterface kittyContract = KittyInterface(ckAddress);
 
-    function feedAndMultiply(uint _zombieId, uint _targetDna) public {
+    function feedAndMultiply(
+        uint _zombieId,
+        uint _targetDna,
+        string memory _species
+    ) public {
         // 判断调用函数者是否是自己
         require(zombieToOwner[_zombieId] == msg.sender);
         // 获取属于自身的僵尸
         Zombie storage myZombie = zombies[_zombieId];
         _targetDna = _targetDna % dnaModulus;
         uint newDna = (myZombie.dna + _targetDna) / 2;
+        if (keccak256(abi.encodePacked(_species)) == keccak256("kitty")) {
+            newDna = newDna - (newDna % 100) + 99;
+        }
         string memory isName = "name1";
         _createZombie(isName, newDna);
     }
@@ -44,6 +51,7 @@ contract ZombieFeeding is ZombieFactory2 {
     function feedOnKitty(uint _zombieId, uint _kittyId) public {
         uint kittyDna;
         (, , , , , , , , , kittyDna) = kittyContract.getKitty(_kittyId);
-        feedAndMultiply(_zombieId, kittyDna);
+        string memory speciesName = "kitty";
+        feedAndMultiply(_zombieId, kittyDna, speciesName);
     }
 }
