@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.20;
 
-contract ZombieFactory2 {
+import "./Ownable.sol";
+
+contract ZombieFactory2 is Ownable {
     // 根据id查找和存储僵尸
     mapping(uint => address) public zombieToOwner;
     mapping(address => uint) ownerZombieCount;
