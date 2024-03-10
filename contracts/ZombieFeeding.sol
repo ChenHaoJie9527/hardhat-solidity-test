@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.24;
 
 import "./ZombieFactory2.sol";
 
@@ -27,8 +27,10 @@ abstract contract KittyInterface {
 }
 
 contract ZombieFeeding is ZombieFactory2 {
-    address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d;
-    KittyInterface kittyContract = KittyInterface(ckAddress);
+    KittyInterface kittyContract;
+    function setKittyContractAddress(address _adds) external {
+        kittyContract = KittyInterface(_adds);
+    }
 
     function feedAndMultiply(
         uint _zombieId,
