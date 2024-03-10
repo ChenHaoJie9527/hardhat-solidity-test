@@ -8,7 +8,7 @@ contract Ownable {
         address indexed newOner
     );
 
-    function isOwnable() public {
+    constructor() {
         owner = msg.sender;
     }
 
