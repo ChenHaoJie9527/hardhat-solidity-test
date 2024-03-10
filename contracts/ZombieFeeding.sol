@@ -28,7 +28,7 @@ abstract contract KittyInterface {
 
 contract ZombieFeeding is ZombieFactory2 {
     KittyInterface kittyContract;
-    function setKittyContractAddress(address _adds) external {
+    function setKittyContractAddress(address _adds) external onlyOwner {
         kittyContract = KittyInterface(_adds);
     }
 
