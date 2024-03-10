@@ -14,6 +14,8 @@ contract ZombieFactory2 is Ownable {
     struct Zombie {
         string name;
         uint256 dna;
+        uint32 level;
+        uint32 readyTime;
     }
     event NewZombie(uint256 zombieId, string name, uint256 dna);
     Zombie[] public zombies;
