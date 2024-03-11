@@ -37,11 +37,13 @@ contract ZombieFeeding is ZombieFactory2 {
         uint _zombieId,
         uint _targetDna,
         string memory _species
-    ) public {
+    ) internal {
         // 判断调用函数者是否是自己
         require(zombieToOwner[_zombieId] == msg.sender);
         // 获取属于自身的僵尸
         Zombie storage myZombie = zombies[_zombieId];
+        // 检查僵尸冷却周期是否结束
+        require(_isReady(myZombie));
         _targetDna = _targetDna % dnaModulus;
         uint newDna = (myZombie.dna + _targetDna) / 2;
         if (keccak256(abi.encodePacked(_species)) == keccak256("kitty")) {
@@ -49,6 +51,7 @@ contract ZombieFeeding is ZombieFactory2 {
         }
         string memory isName = "name1";
         _createZombie(isName, newDna);
+        _triggerCooldown(myZombie);
     }
 
     // 僵尸部署将触发冷却周期器
