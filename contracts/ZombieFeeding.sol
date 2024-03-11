@@ -28,6 +28,7 @@ abstract contract KittyInterface {
 
 contract ZombieFeeding is ZombieFactory2 {
     KittyInterface kittyContract;
+
     function setKittyContractAddress(address _adds) external onlyOwner {
         kittyContract = KittyInterface(_adds);
     }
@@ -48,6 +49,16 @@ contract ZombieFeeding is ZombieFactory2 {
         }
         string memory isName = "name1";
         _createZombie(isName, newDna);
+    }
+
+    // 僵尸部署将触发冷却周期器
+    function _triggerCooldown(Zombie storage _zombie) internal {
+        _zombie.readyTime = uint32(cooldownTime + block.timestamp);
+    }
+
+    // 判断下次允许捕食时间是否已经到了
+    function _isReady(Zombie storage _zombie) internal view returns (bool) {
+        return (_zombie.readyTime <= block.timestamp);
     }
 
     function feedOnKitty(uint _zombieId, uint _kittyId) public {
