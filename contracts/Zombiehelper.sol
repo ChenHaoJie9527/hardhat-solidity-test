@@ -18,6 +18,13 @@ contract zombiehelper is ZombieFeeding {
         zombies[_zombieId].name = _newName;
     }
 
+    uint levelUpFee = 0.001 ether;
+
+    function levelUp(uint _zombieId) external payable {
+        require(levelUpFee == msg.value);
+        zombies[_zombieId].level++;
+    }
+
     function changeNna(
         uint _zombieId,
         uint _newDna
@@ -25,6 +32,7 @@ contract zombiehelper is ZombieFeeding {
         require(msg.sender == zombieToOwner[_zombieId]);
         zombies[_zombieId].dna = _newDna;
     }
+
     // 获取指定地址的僵尸军团
     function getZombiesByOwner(
         address _owner
