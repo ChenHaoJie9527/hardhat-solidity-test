@@ -2,7 +2,7 @@
 pragma solidity ^0.8.24;
 import "./ZombieFeeding.sol";
 
-contract zombiehelper is ZombieFeeding {
+contract Zombiehelper is ZombieFeeding {
     constructor() {}
 
     modifier aboveLevel(uint _level, uint _zombieId) {
